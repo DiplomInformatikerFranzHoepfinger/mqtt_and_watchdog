@@ -11,6 +11,7 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
+#include "sys/param.h"
 #include "sdkconfig.h"
 
 static const char *TAG = "example";
@@ -21,13 +22,37 @@ static const char *TAG = "example";
 #define BLINK_GPIO CONFIG_BLINK_GPIO
 
 static uint8_t s_led_state = 0;
-
+static int64_t time = 0;
+static int64_t old_time = 0;
+static int64_t duration = 0;
+static int64_t duration_min = 0;
+static int64_t duration_max = 100000000;
 
 
 static void blink_led(void)
 {
     /* Set the GPIO level according to the state (LOW or HIGH)*/
     gpio_set_level(BLINK_GPIO, s_led_state);
+}
+
+static void measure_time(void)
+{
+	time = esp_timer_get_time();
+	duration = old_time - time;
+	old_time = time;
+}
+
+
+
+static void time_statistic(void)
+{
+	duration_min = MIN(duration_min, duration);
+	duration_max = MAX(duration_max, duration);
+}
+
+static void print_statistic(void)
+{
+    ESP_LOGI(TAG, "duration_min/max %lli/%lli", duration_min, duration_max);
 }
 
 static void configure_led(void)
@@ -44,17 +69,17 @@ void app_main(void)
 
     /* Configure the peripheral according to the LED type */
     configure_led();
-    int64_t time = 0;
-    int64_t old_time = 0;
-    int64_t duration = 0;
+    measure_time();
 
     while (1) {
-    	time = esp_timer_get_time();
-    	duration = old_time - time;
-    	old_time = time;
-        blink_led();
-        /* Toggle the LED state */
-        s_led_state = !s_led_state;
-        vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
+    	for (int i = 0; i < 5000; ++i) {
+            vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
+        	measure_time();
+        	time_statistic();
+            blink_led();
+            /* Toggle the LED state */
+            s_led_state = !s_led_state;
+		}
+    	print_statistic();
     }
 }
