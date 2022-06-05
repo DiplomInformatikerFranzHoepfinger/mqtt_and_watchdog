@@ -66,9 +66,8 @@ static void configure_led(void)
 }
 
 
-void blink_example_main(void)
+void blink_example_task(void *arg)
 {
-
     /* Configure the peripheral according to the LED type */
     configure_led();
     measure_time();
@@ -85,3 +84,14 @@ void blink_example_main(void)
     	print_statistic();
     }
 }
+
+
+
+
+void blink_example_main(void)
+{
+	xTaskCreate(blink_example_task, "blink_example_task", 2048, NULL, 10, NULL);
+}
+
+
+
