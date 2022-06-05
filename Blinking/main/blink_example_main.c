@@ -52,7 +52,7 @@ static void time_statistic(void)
 
 static void print_statistic(void)
 {
-    ESP_LOGI(TAG, "duration_min/max %lli/%lli", duration_min, duration_max);
+    ESP_LOGI(TAG, "duration_min/max %lli/%lli microseconds", duration_min, duration_max);
     duration_min = 100000000;
     duration_max = 0;
 }
