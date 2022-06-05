@@ -7,13 +7,17 @@
 
 
 
-
 extern void blink_example_main(void);
+
+extern void mqtt_main(void);
 
 
 void app_main(void){
 
+
+
 	blink_example_main();
+	mqtt_main();
 
 
 }

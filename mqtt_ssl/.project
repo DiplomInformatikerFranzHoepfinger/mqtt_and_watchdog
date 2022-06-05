@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>blink</name>
+	<name>mqtt_ssl</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -2399,9 +2399,19 @@
 			<location>/home/franz/esp-idf-v4.4/components/esp_ipc/src/esp_ipc_isr/esp_ipc_isr_routines.S</location>
 		</link>
 		<link>
-			<name>esp_idf_components/examples/common_components/led_strip/led_strip_rmt_ws2812.c</name>
+			<name>esp_idf_components/examples/common_components/protocol_examples_common/addr_from_stdin.c</name>
 			<type>1</type>
-			<location>/home/franz/esp-idf-v4.4/examples/common_components/led_strip/led_strip_rmt_ws2812.c</location>
+			<location>/home/franz/esp-idf-v4.4/examples/common_components/protocol_examples_common/addr_from_stdin.c</location>
+		</link>
+		<link>
+			<name>esp_idf_components/examples/common_components/protocol_examples_common/connect.c</name>
+			<type>1</type>
+			<location>/home/franz/esp-idf-v4.4/examples/common_components/protocol_examples_common/connect.c</location>
+		</link>
+		<link>
+			<name>esp_idf_components/examples/common_components/protocol_examples_common/stdin_out.c</name>
+			<type>1</type>
+			<location>/home/franz/esp-idf-v4.4/examples/common_components/protocol_examples_common/stdin_out.c</location>
 		</link>
 		<link>
 			<name>esp_idf_components/fatfs/port/freertos/ffsystem.c</name>
