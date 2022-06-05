@@ -66,7 +66,7 @@ static void configure_led(void)
 }
 
 
-void app_main(void)
+void blink_example_main(void)
 {
 
     /* Configure the peripheral according to the LED type */
