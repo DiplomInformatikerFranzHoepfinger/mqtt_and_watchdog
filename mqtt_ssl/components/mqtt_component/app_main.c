@@ -136,6 +136,10 @@ static void mqtt_app_start(void)
 
 void mqtt_main(void)
 {
+
+    vTaskDelay(5000 / portTICK_PERIOD_MS);
+
+
     ESP_LOGI(TAG, "[APP] Startup..");
     ESP_LOGI(TAG, "[APP] Free memory: %d bytes", esp_get_free_heap_size());
     ESP_LOGI(TAG, "[APP] IDF version: %s", esp_get_idf_version());

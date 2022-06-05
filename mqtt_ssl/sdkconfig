@@ -133,6 +133,14 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # Example Configuration
 #
+CONFIG_BLINK_LED_GPIO=y
+CONFIG_BLINK_GPIO=5
+CONFIG_BLINK_PERIOD=1
+# end of Example Configuration
+
+#
+# Example Configuration
+#
 CONFIG_BROKER_URI="mqtts://mqtt.eclipseprojects.io:8883"
 CONFIG_BROKER_CERTIFICATE_OVERRIDE=""
 CONFIG_BROKER_BIN_SIZE_TO_SEND=20000
