@@ -24,7 +24,7 @@ menu "Example Configuration"
 
     config BLINK_PERIOD
         int "Blink period in ms"
-        range 10 3600000
+        range 1 3600000
         default 1000
         help
             Define the blinking period in milliseconds.
