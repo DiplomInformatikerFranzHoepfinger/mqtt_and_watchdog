@@ -44,9 +44,14 @@ void app_main(void)
 
     /* Configure the peripheral according to the LED type */
     configure_led();
+    int64_t time = 0;
+    int64_t old_time = 0;
+    int64_t duration = 0;
 
     while (1) {
-        ESP_LOGI(TAG, "Turning the LED %s!", s_led_state == true ? "ON" : "OFF");
+    	time = esp_timer_get_time();
+    	duration = old_time - time;
+    	old_time = time;
         blink_led();
         /* Toggle the LED state */
         s_led_state = !s_led_state;
