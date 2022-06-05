@@ -137,7 +137,7 @@ static void mqtt_app_start(void)
 void mqtt_main(void)
 {
 
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
+    vTaskDelay(20000 / portTICK_PERIOD_MS);
 
 
     ESP_LOGI(TAG, "[APP] Startup..");
