@@ -25,8 +25,8 @@ static uint8_t s_led_state = 0;
 static int64_t time = 0;
 static int64_t old_time = 0;
 static int64_t duration = 0;
-static int64_t duration_min = 0;
-static int64_t duration_max = 100000000;
+static int64_t duration_min = 100000000;
+static int64_t duration_max = 0;
 
 
 static void blink_led(void)
@@ -38,7 +38,7 @@ static void blink_led(void)
 static void measure_time(void)
 {
 	time = esp_timer_get_time();
-	duration = old_time - time;
+	duration = time - old_time;
 	old_time = time;
 }
 
@@ -53,6 +53,8 @@ static void time_statistic(void)
 static void print_statistic(void)
 {
     ESP_LOGI(TAG, "duration_min/max %lli/%lli", duration_min, duration_max);
+    duration_min = 100000000;
+    duration_max = 0;
 }
 
 static void configure_led(void)
